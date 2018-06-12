@@ -61,6 +61,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="fonction" class="col-md-4 col-form-label text-md-right">{{ __('fonction') }}</label>
+
+                            <div class="col-md-6" >
+                              <select class="form-control" style="height:34px" name="fonction" required >
+                                <option value="" disabled>Choisissez une fonction</option>
+                                <option value="cadre">Cadre</option>
+                                <option value="Technicien">Technicien</option>
+                                <option value="Agent">Agent</option>
+                              </select>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

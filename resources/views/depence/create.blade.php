@@ -46,18 +46,28 @@
             </div>
           </div>
         </div>
+				<div class="row">
+					<div class="col-md-6">
+						<label>Fonction</label>
+						<input type="text" class="form-control" value="{{$user}}" disabled>
+					</div>
+					<div class="col-md-6">
+	          <div class="form-group @if($errors->get('montant')) has-error @endif">
+	            <label>Montant</label>
+	            <input type="text" name="montant" class="form-control"  value="{{$prix}}" disabled/>
+	            @if($errors->get('montant'))
+	              @foreach($errors->get('montant') as $message)
+	              <li class="text-danger">{{$message}}</li>
+	              @endforeach
+	            @endif
+	          </div>
+	        </div>
+				</div>
         <div class="row">
-        <div class="col-md-12">
-          <div class="form-group @if($errors->get('montant')) has-error @endif">
-            <label>Montant</label>
-            <input type="text" name="montant" class="form-control"  value="{{old('montant')}}"/>
-            @if($errors->get('montant'))
-              @foreach($errors->get('montant') as $message)
-              <li class="text-danger">{{$message}}</li>
-              @endforeach
-            @endif
-          </div>
-        </div>
+					<div class="col-md-12">
+						<label>Nombre de kilométre</label>
+						<input type="text" class="form-control" value="{{old('nbrKm')}}" name="nbrKm" >
+					</div>
       </div>
         <div class="row">
           <div class="col-md-12">

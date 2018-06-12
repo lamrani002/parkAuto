@@ -67,12 +67,12 @@
                     <div class="panel panel-default panel-alt widget-messaging">
                         <div class="panel-body">
                             <ul>
-                              @foreach($depence as $dp)
+
                                 <li>
                                     <h3 class="sender"><strong>DEPENCES</strong></h3>
                                     <h4>Durant la mission ID : {{$mission->id}}</h4>
                                 </li>
-                                @if($depence != NULL and $dp->mission_id == $mission->id)
+
                                 <li>
                                     <h5 class="sender">TYPE</h5>
 
@@ -85,23 +85,25 @@
                                     </h6>
 
                                 </li>
-                                  @endif
-                                  @if($depence != NULL)
+
+
                                 <li>
                                     <h5 class="sender">Justificatif</h5>
-                                    <h4>@if($dp->bon == NULL and $dp->mission_id == $mission->id)
-                                       NON
+                                    <h4>  @foreach($depence as $dp)
+                                      @if($dp->bon == NULL and $dp->mission_id == $mission->id)
+                                       NON /
                                        @else
-                                       OUI
+                                       OUI /
                                        @endif
+                                       @endforeach
                                     </h4>
                                 </li>
-                                @endif
+
                                 <li>
                                     <h5 class="sender">Montant Totale</h5>
                                     <h4>{{$total}} DH</h4>
                                 </li>
-                                @endforeach
+
                             </ul>
 
                         </div><!-- panel-body -->

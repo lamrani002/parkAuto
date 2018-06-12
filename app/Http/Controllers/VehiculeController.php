@@ -84,8 +84,7 @@ class VehiculeController extends Controller
         }
         else {
         $user = Auth::user()->id;
-        $mission = Mission::where([['user_id','=',$user],['vehicule_id','<>',$v->id]])
-                  ->update(['vehicule_id' => $vehicule->id]);
+        $mission = Mission::where('user_id','=',$user)->update(['vehicule_id'=>$v->id]);
         $v->disponibilite = 0;
         $v->save();
         session()->flash('success','le vehicule à été bien resérver !!');

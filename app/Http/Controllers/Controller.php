@@ -22,10 +22,12 @@ class Controller extends BaseController
     {
         $mission = Mission::find($id);
         if($mission->validation ==0){
+        $vehicule = Vehicule::where('id','=',$mission->vehicule_id)->update(['disponibilite'=>1]);
         $mission->validation = 1;
         $mission->save();
         session()->flash('success','Mission validée!!');
-        return redirect('mission');
+        redirect('mission');
+        return $this->getPdf($id);
         }
         else {
           session()->flash('danger','Mission déja validée!!');
@@ -39,13 +41,7 @@ class Controller extends BaseController
       $vehicule = Vehicule::where('id','=',$mission->vehicule_id)->get();
       $depence = Depence::where('mission_id','=',$mission->id)->get();
       $total = Depence::sum('montant');
-      if($mission->validation ==0){
-        session()->flash('danger','Mission pas encore validée!!');
-        return redirect('mission');
-      }
-      else {
-        $pdf = PDF::loadView('facture',compact('mission','user','vehicule','depence','total'));
-        return $pdf->setPaper('a4','landscape')->stream('facture.pdf');
-      }
+      $pdf = PDF::loadView('facture',compact('mission','user','vehicule','depence','total'));
+        return $pdf->setPaper('a4','landscape')->download('facture.pdf');
     }
 }

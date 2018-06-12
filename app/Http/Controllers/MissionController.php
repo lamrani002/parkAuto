@@ -81,8 +81,8 @@ class MissionController extends Controller
         $mission = Mission::find($mission->id);
         $user =User::all();
         $vehicule = Vehicule::all();
-        $depence = Depence::join('missions','depences.mission_id','=','missions.id')->Where('mission_id','=',$mission)->get();
-        $total = Depence::sum('montant');
+        $depence = Depence::Where([['user_id','=',$mission->user_id],['mission_id','=',$mission->id]])->get();
+        $total = Depence::Where([['user_id','=',$mission->user_id],['mission_id','=',$mission->id]])->sum('montant');
         return view('mission.show', ['mission' => $mission,'vehicule'=> $vehicule,'user' =>$user,'depence' => $depence,'total'=>$total]);
     }
 
